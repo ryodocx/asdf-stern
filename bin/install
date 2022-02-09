@@ -181,14 +181,9 @@ get_filename() {
   version_short=$(get_version_short "$version")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
 
-  echo "❗"
-  echo ${version_short%.*}
-
-
   # 1.0.0 ~ 1.20.x
   if [ "${version_short%%.*}" -eq 1 ]; then
-    echo $mejor_version
-    echo mejor_version 1
+    echo mejor_version="${version_short%%.*}"
 
     local minor_patch_version="${version_short#*.}"
     local minor_version="${minor_patch_version%.*}"
