@@ -177,8 +177,15 @@ get_filename() {
   local platform="$2"
   local binary_name="$3"
   local version_short
+
   version_short=$(get_version_short "$version")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
+
+  echo ❗❗❗
+  echo ${version_short#.}
+  echo ❗❗❗
+
+  if [ ${version_short#.} -lt 1.21 ]
 
   echo "$g_filename_template" |
     sed "s/__VERSION__/${version}/g;s/__VERSION_SHORT__/${version_short}/g;s/__BINARY_NAME__/${binary_name}/g;s/__PLATFORM__/${platform}/g"
