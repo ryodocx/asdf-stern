@@ -181,11 +181,11 @@ get_filename() {
   version_short=$(get_version_short "$version")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
 
-  echo ❗❗❗
+  echo "❗"
   echo ${version_short%.*}
 
   if [ ${version_short%.*} -lt 1.21 ]; then
-    echo ❗❗❗
+    echo "❗❗❗"
     echo if-block
   fi
 
