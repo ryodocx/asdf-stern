@@ -182,12 +182,12 @@ get_filename() {
 
   # 1.0.0 ~ 1.20.x
   if [ "${version_short%%.*}" -eq 1 ]; then
-    echo mejor_version="${version_short%%.*}" 1>&2
+    echo "mejor_version=${version_short%%.*}" 1>&2
 
     local minor_patch_version="${version_short#*.}"
     local minor_version="${minor_patch_version%.*}"
     if [ "$minor_version" -le 20 ]; then
-      echo version: 1.0.0 ~ 1.20.x 1>&2
+      echo "version: 1.0.0 ~ 1.20.x" 1>&2
     fi
   fi
 
