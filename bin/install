@@ -180,19 +180,20 @@ get_filename() {
   version_short=$(get_version_short "$version")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
 
-  # 1.0.0 ~ 1.20.x
-  if [ "${version_short%%.*}" -eq 1 ]; then
-    echo "mejor_version=${version_short%%.*}" 1>&2
+  echo "$g_filename_template" |
+    sed "s/__VERSION__/${version}/g;s/__VERSION_SHORT__/${version_short}/g;s/__BINARY_NAME__/${binary_name}/g;s/__PLATFORM__/${platform}/g" 1>&2
 
+  if [ "${version_short%%.*}" -eq 1 ]; then
     local minor_patch_version="${version_short#*.}"
     local minor_version="${minor_patch_version%.*}"
     if [ "$minor_version" -le 20 ]; then
-      echo "version: 1.0.0 ~ 1.20.x" 1>&2
+      # v1.0.0 ~ v1.20.x
+      echo "$g_filename_template" |
+        sed "s/__VERSION__/${version}/g;s/__VERSION_SHORT__/${version_short}/g;s/__BINARY_NAME__/${binary_name}/g;s/__PLATFORM__/${platform}/g"
+        return 0
     fi
   fi
 
-  echo "$g_filename_template" |
-    sed "s/__VERSION__/${version}/g;s/__VERSION_SHORT__/${version_short}/g;s/__BINARY_NAME__/${binary_name}/g;s/__PLATFORM__/${platform}/g"
 }
 
 get_download_url() {
