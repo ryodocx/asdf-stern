@@ -177,7 +177,6 @@ get_filename() {
   local platform="$2"
   local binary_name="$3"
   local version_short
-
   version_short=$(get_version_short "$version")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
 
